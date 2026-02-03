@@ -1,0 +1,201 @@
+/* ===== RESET BÁSICO ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primaria: #2563eb;
+    --sucesso: #16a34a;
+    --erro: #dc2626;
+    --cinza: #f3f4f6;
+    --escuro: #111827;
+    --borda: #e5e7eb;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--cinza);
+    color: var(--escuro);
+    line-height: 1.5;
+}
+
+/* ===== HEADER ===== */
+header {
+    background: var(--primaria);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 1.3rem;
+}
+
+/* ===== MAIN ===== */
+main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ===== BUSCA ===== */
+.busca {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.busca label {
+    font-weight: 600;
+}
+
+.busca input,
+.busca button {
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid var(--borda);
+}
+
+.busca button {
+    background: var(--primaria);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* ===== AVISO ===== */
+.aviso {
+    font-weight: 600;
+    color: var(--erro);
+}
+
+/* ===== FORMULÁRIO ===== */
+.form-container {
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+form {
+    display: grid;
+    gap: 0.8rem;
+}
+
+label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+input {
+    padding: 0.6rem;
+    border-radius: 6px;
+    border: 1px solid var(--borda);
+}
+
+button[type="submit"] {
+    margin-top: 0.5rem;
+    padding: 0.7rem;
+    background: var(--sucesso);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* ===== TABELA ===== */
+.tabela-container {
+    overflow-x: auto;
+    background: white;
+    border-radius: 10px;
+    padding: 0.5rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+caption {
+    text-align: left;
+    font-weight: bold;
+    padding: 0.5rem;
+}
+
+thead {
+    background: var(--cinza);
+}
+
+th,
+td {
+    padding: 0.6rem;
+    border-bottom: 1px solid var(--borda);
+    text-align: left;
+}
+
+tr:hover {
+    background: #eef2ff;
+}
+
+/* 🔴 DATA OCUPADA */
+tr.ocupada {
+    background: #fee2e2;
+}
+
+/* ✨ LINHA BUSCADA */
+tr.destaque {
+    background: #bbf7d0;
+    font-weight: bold;
+}
+
+/* ===== BOTÕES ===== */
+.btn-editar {
+    background: #facc15;
+    border: none;
+    padding: 0.4rem 0.6rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-excluir {
+    background: var(--erro);
+    color: white;
+    border: none;
+    padding: 0.4rem 0.6rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (min-width: 768px) {
+    main {
+        padding: 2rem;
+    }
+
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    form {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    form button {
+        grid-column: span 2;
+    }
+}

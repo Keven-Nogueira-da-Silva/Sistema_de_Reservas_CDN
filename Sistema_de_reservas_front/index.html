@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservas do Salão</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>📅 Controle de Reservas do Salão</h1>
+</header>
+
+<main>
+
+    <!-- 🔍 BUSCA -->
+    <section class="busca" aria-label="Buscar reserva por data">
+        <label for="buscarData">Buscar por data:</label>
+        <input type="date" id="buscarData">
+        <button type="button" onclick="buscarReservas()">Buscar</button>
+    </section>
+
+    <p id="aviso" class="aviso" role="alert"></p>
+
+    <!-- 📝 FORMULÁRIO -->
+    <section class="form-container" aria-label="Cadastro de reserva">
+        <form id="form-reserva">
+            <input type="hidden" id="reservaId">
+
+            <label for="dataDaFesta">Data da festa</label>
+            <input type="date" id="dataDaFesta" required>
+
+            <label for="nomeDoCliente">Nome do cliente</label>
+            <input type="text" id="nomeDoCliente" required>
+
+            <label for="diaDaSemana">Dia da semana</label>
+            <input type="text" id="diaDaSemana" required>
+
+            <label for="valorDoSinal">Valor do sinal</label>
+            <input type="number" id="valorDoSinal" required>
+
+            <label for="valorRestante">Valor restante</label>
+            <input type="number" id="valorRestante" required>
+
+            <button type="submit">Salvar Reserva</button>
+        </form>
+    </section>
+
+    <!-- 📋 TABELA -->
+    <section class="tabela-container" id="tabela-container" aria-label="Lista de reservas">
+        <table>
+            <caption>Reservas cadastradas</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Dia</th>
+                    <th scope="col">Sinal</th>
+                    <th scope="col">Restante</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody id="tabela-reservas">
+                <!-- preenchido via JS -->
+            </tbody>
+        </table>
+    </section>
+
+</main>
+
+<footer>
+    <p>© Sistema de Reservas – uso interno</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
