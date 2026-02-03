@@ -2,6 +2,7 @@
 
 [![Java](https://img.shields.io/badge/Java-17+-blue)](https://www.java.com/)
 [![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.0-green)](https://spring.io/projects/spring-boot)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14-blue)](https://www.postgresql.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
 Um **sistema backend REST** desenvolvido em **Spring Boot** para gerenciar reservas de eventos, permitindo criar, consultar, atualizar e deletar reservas com validação de datas.
@@ -13,7 +14,7 @@ Um **sistema backend REST** desenvolvido em **Spring Boot** para gerenciar reser
 - Java 17+
 - Spring Boot
 - Spring Data JPA
-- H2 / MySQL (ou outro banco relacional)
+- PostgreSQL
 - Lombok
 - MapStruct
 - Jakarta Transaction
@@ -41,6 +42,7 @@ com.example.Sistema_de_reservas
 │   └── ReservasMapper.java           # Conversão entre DTO e entidade
 └── exception
     └── RecursoNaoEncontradoException.java # Exceção personalizada
+
 Funcionalidades
 
 ✅ Listar todas as reservas
@@ -114,7 +116,7 @@ Deletar reserva
 
 curl -X DELETE http://localhost:8080/reservas/1
 
-Como Rodar o Projeto
+Como Rodar o Projeto com PostgreSQL
 
 Clonar o repositório:
 
@@ -124,11 +126,11 @@ cd sistema-de-reservas
 
 Configurar o banco em application.properties ou application.yml:
 
-spring.datasource.url=jdbc:h2:mem:testdb
-spring.datasource.driverClassName=org.h2.Driver
-spring.datasource.username=sa
-spring.datasource.password=
+spring.datasource.url=jdbc:postgresql://localhost:5432/reservasdb
+spring.datasource.username=seu_usuario
+spring.datasource.password=sua_senha
 spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 
 
 Rodar o projeto:
