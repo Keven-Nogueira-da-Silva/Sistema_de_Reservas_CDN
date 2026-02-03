@@ -1,19 +1,24 @@
-# Sistema de Reservas
+# Sistema de Reservas 🗓️
 
-Um sistema backend desenvolvido em **Spring Boot** para gerenciar reservas de eventos, permitindo criar, consultar, atualizar e deletar reservas.
+[![Java](https://img.shields.io/badge/Java-17+-blue)](https://www.java.com/)
+[![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.0-green)](https://spring.io/projects/spring-boot)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
+
+Um **sistema backend REST** desenvolvido em **Spring Boot** para gerenciar reservas de eventos, permitindo criar, consultar, atualizar e deletar reservas com validação de datas.
 
 ---
 
 ## Tecnologias Utilizadas
 
-- **Java 17+**
-- **Spring Boot**
-- **Spring Data JPA**
-- **H2 / MySQL** (ou qualquer banco relacional)
-- **Lombok** (para reduzir boilerplate)
-- **MapStruct** (para mapeamento entre DTOs e entidades)
-- **Jakarta Transaction** (para controle de transações)
-- **REST API** com JSON
+- Java 17+
+- Spring Boot
+- Spring Data JPA
+- H2 / MySQL (ou outro banco relacional)
+- Lombok
+- MapStruct
+- Jakarta Transaction
+- REST API JSON
+- CORS habilitado para front-end
 
 ---
 
@@ -30,36 +35,35 @@ com.example.Sistema_de_reservas
 ├── model
 │   └── Reservas.java                 # Entidade Reserva
 ├── dto
-│   ├── ReservasRequestDto.java       # DTO para requisições
-│   └── ReservasResponseDto.java      # DTO para respostas
+│   ├── ReservasRequestDto.java       # DTO de requisição
+│   └── ReservasResponseDto.java      # DTO de resposta
 ├── mapper
 │   └── ReservasMapper.java           # Conversão entre DTO e entidade
 └── exception
     └── RecursoNaoEncontradoException.java # Exceção personalizada
-
 Funcionalidades
 
-Listar todas as reservas
+✅ Listar todas as reservas
 
-Buscar reservas por data
+✅ Buscar reservas por data
 
-Criar novas reservas
+✅ Criar novas reservas
 
-Editar reservas existentes
+✅ Atualizar reservas existentes
 
-Excluir reservas
+✅ Deletar reservas
 
-Validação para não permitir reservas duplicadas na mesma data
+⚠️ Validação para evitar reservas duplicadas na mesma data
 
 Endpoints da API
-Método	Endpoint	Descrição	Request Body
+Método	Endpoint	Descrição	Body (JSON)
 GET	/reservas	Listar todas as reservas	-
 GET	/reservas/buscar?data=	Buscar reservas por data	-
 GET	/reservas/{id}	Buscar reserva por ID	-
 POST	/reservas	Criar nova reserva	ReservasRequestDto
 PUT	/reservas/{id}	Atualizar reserva existente	ReservasRequestDto
 DELETE	/reservas/{id}	Deletar reserva	-
-DTO Exemplo
+Exemplo de DTOs
 
 ReservasRequestDto
 
@@ -69,9 +73,78 @@ ReservasRequestDto
   "descricaoEvento": "Festa de aniversário"
 }
 
+
+ReservasResponseDto
+
 {
   "id": 1,
   "nomeCliente": "João da Silva",
   "dataDaFesta": "2026-02-10",
   "descricaoEvento": "Festa de aniversário"
 }
+
+Testando a API
+Com cURL
+
+Criar reserva
+
+curl -X POST http://localhost:8080/reservas \
+-H "Content-Type: application/json" \
+-d '{"nomeCliente":"João da Silva","dataDaFesta":"2026-02-10","descricaoEvento":"Festa de aniversário"}'
+
+
+Listar todas
+
+curl http://localhost:8080/reservas
+
+
+Buscar por data
+
+curl http://localhost:8080/reservas/buscar?data=2026-02-10
+
+
+Atualizar reserva
+
+curl -X PUT http://localhost:8080/reservas/1 \
+-H "Content-Type: application/json" \
+-d '{"nomeCliente":"João Atualizado","dataDaFesta":"2026-02-11","descricaoEvento":"Nova festa"}'
+
+
+Deletar reserva
+
+curl -X DELETE http://localhost:8080/reservas/1
+
+Como Rodar o Projeto
+
+Clonar o repositório:
+
+git clone https://github.com/seu-usuario/sistema-de-reservas.git
+cd sistema-de-reservas
+
+
+Configurar o banco em application.properties ou application.yml:
+
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.jpa.hibernate.ddl-auto=update
+
+
+Rodar o projeto:
+
+./mvnw spring-boot:run
+
+
+Acessar a API em:
+http://localhost:8080/reservas
+
+Observações Técnicas
+
+MapStruct para mapeamento entre DTOs e entidades
+
+@Transactional para garantir consistência nas operações de banco
+
+Validação de datas para evitar conflitos de reservas
+
+CORS habilitado (@CrossOrigin(origins = "*")) para integração com front-end
